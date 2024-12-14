@@ -57,3 +57,32 @@ def on_memory_subtract():
     except ValueError:
         entry_text.set("Error: Invalid input")
 
+def on_memory_multiply():
+    """Умножить значение в памяти."""
+    try:
+        value = float(entry_text.get())
+        memory.m_multiply(value)
+        entry_text.set("")
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
+def on_memory_divide():
+    """Разделить значение в памяти."""
+    try:
+        value = float(entry_text.get())
+        memory.m_divide(value)
+        entry_text.set("")
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+    except ZeroDivisionError:
+        entry_text.set("Error: Cannot divide by zero")
+
+def on_memory_recall():
+    """Получить значение из памяти."""
+    entry_text.set(str(memory.m_recall()))
+
+def on_memory_clear():
+    """Очистить память."""
+    memory.m_clear()
+    entry_text.set("")
+
