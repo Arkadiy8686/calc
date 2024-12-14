@@ -159,3 +159,12 @@ def on_floor():
     except ValueError:
         entry_text.set("Error: Invalid input")
 
+def on_ceil():
+    """Округляет число в большую сторону."""
+    try:
+        value = float(entry_text.get())
+        result = ceil_value(value)
+        entry_text.set(result)
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
