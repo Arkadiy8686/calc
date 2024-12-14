@@ -39,3 +39,21 @@ def on_equal():
     except Exception as e:
         entry_text.set(f"Error: {e}")
 
+def on_memory_add():
+    """Добавить значение в память."""
+    try:
+        value = float(entry_text.get())
+        memory.m_add(value)
+        entry_text.set("")
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
+def on_memory_subtract():
+    """Вычесть значение из памяти."""
+    try:
+        value = float(entry_text.get())
+        memory.m_subtract(value)
+        entry_text.set("")
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
