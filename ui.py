@@ -86,3 +86,32 @@ def on_memory_clear():
     memory.m_clear()
     entry_text.set("")
 
+def on_memory_delete():
+    """Удалить последнюю операцию из памяти."""
+    try:
+        memory.delete_last()
+        entry_text.set(str(memory.m_recall()))
+    except ValueError:
+        entry_text.set("Error: No operations to delete")
+
+def on_history():
+    """Открывает окно с историей операций с памятью."""
+    history_window = tk.Toplevel()
+    history_window.title("Memory History")
+    
+    # Получаем историю из памяти
+    history_list = memory.get_history()
+
+    # Отображаем историю в окне
+    history_text = tk.Text(history_window, width=40, height=10)
+    history_text.pack(padx=10, pady=10)
+
+    if history_list:
+        for operation in history_list:
+            history_text.insert(tk.END, f"{operation}\n")
+    else:
+        history_text.insert(tk.END, "No operations in history.")
+    
+    # Делаем поле только для чтения
+    history_text.config(state=tk.DISABLED)
+
