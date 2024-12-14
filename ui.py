@@ -115,3 +115,25 @@ def on_history():
     # Делаем поле только для чтения
     history_text.config(state=tk.DISABLED)
 
+def on_modulus():
+    """Добавляет знак остатка от деления в поле ввода."""
+    entry_text.set(entry_text.get() + " % ")
+
+def on_sine():
+    """Вычисляет синус."""
+    try:
+        value = float(entry_text.get())
+        result = sine(value)
+        entry_text.set(result)
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
+def on_cosine():
+    """Вычисляет косинус."""
+    try:
+        value = float(entry_text.get())
+        result = cosine(value)
+        entry_text.set(result)
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
