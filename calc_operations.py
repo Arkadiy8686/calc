@@ -62,3 +62,15 @@ def validate_decimal(value):
         # Бросаем исключение с понятным сообщением
         raise ValueError("Invalid input: Please enter a valid number")
 
+class Memory:
+    def __init__(self):
+        self.memory = Decimal(0)
+        self.history = []
+
+    def m_add(self, value):
+        """Добавить значение в память."""
+        value = validate_decimal(value)  # Валидация значения
+        self.memory += value
+        self.history.append(value)
+
+    
