@@ -44,3 +44,21 @@ def sine(a):
     a = validate_decimal(a)  # Валидация
     return round(math.sin(math.radians(a)), 15)
 
+def cosine(a):
+    a = validate_decimal(a)  # Валидация
+    return round(math.cos(math.radians(a)), 15)
+
+def floor_value(a):
+    return math.floor(a)
+
+def ceil_value(a):
+    return math.ceil(a)
+
+def validate_decimal(value):
+    try:
+        # Попытка преобразовать значение в Decimal
+        return Decimal(value)
+    except (ValueError, TypeError, decimal.InvalidOperation):
+        # Бросаем исключение с понятным сообщением
+        raise ValueError("Invalid input: Please enter a valid number")
+
