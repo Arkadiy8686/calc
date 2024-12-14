@@ -137,3 +137,25 @@ def on_cosine():
     except ValueError:
         entry_text.set("Error: Invalid input")
 
+def on_power():
+    """Добавляет знак возведения в степень в поле ввода."""
+    entry_text.set(entry_text.get() + " ^ ")
+
+def on_square_root():
+    """Вычисляет квадратный корень."""
+    try:
+        value = float(entry_text.get())
+        result = square_root(value)
+        entry_text.set(result)
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
+def on_floor():
+    """Округляет число в меньшую сторону."""
+    try:
+        value = float(entry_text.get())
+        result = floor_value(value)
+        entry_text.set(result)
+    except ValueError:
+        entry_text.set("Error: Invalid input")
+
