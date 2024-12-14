@@ -168,3 +168,66 @@ def on_ceil():
     except ValueError:
         entry_text.set("Error: Invalid input")
 
+def start_calculator():
+    """Запускает графический интерфейс калькулятора."""
+    global entry_text
+    window = tk.Tk()
+    window.title("Calculator")
+
+    # Переменная для поля ввода
+    entry_text = tk.StringVar()
+
+    # Поле ввода
+    entry = tk.Entry(window, textvariable=entry_text, font=('Arial', 20), bd=10, relief="sunken", justify="right")
+    entry.grid(row=0, column=0, columnspan=4)
+
+    # Кнопки калькулятора
+    buttons = [
+        ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
+        ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
+        ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
+        ('0', 4, 0), ('.', 4, 1), ('=', 4, 2), ('+', 4, 3),
+        ('MC', 5, 0), ('MR', 5, 1), ('M+', 5, 2), ('M-', 5, 3),
+        ('%', 6, 0), ('sin', 6, 1), ('cos', 6, 2), ('^', 6, 3),
+        ('√', 7, 0), ('floor', 7, 1), ('ceil', 7, 2), ('←', 7, 3),  # Кнопка Backspace (←)
+        ('History', 8, 0)  # Кнопка для истории операций
+    ]
+
+    # Генерация кнопок
+    for (text, row, col) in buttons:
+        if text == "=":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_equal)
+        elif text == "C":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_clear)
+        elif text == "MC":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_memory_clear)
+        elif text == "MR":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_memory_recall)
+        elif text == "M+":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_memory_add)
+        elif text == "M-":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_memory_subtract)
+        elif text == "%":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_modulus)
+        elif text == "sin":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_sine)
+        elif text == "cos":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_cosine)
+        elif text == "^":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_power)
+        elif text == "√":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_square_root)
+        elif text == "floor":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_floor)
+        elif text == "ceil":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_ceil)
+        elif text == "←":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_backspace)
+        elif text == "History":
+            button = tk.Button(window, text=text, width=10, height=3, command=on_history)
+        else:
+            button = tk.Button(window, text=text, width=10, height=3, command=lambda t=text: on_button_click(t))
+        button.grid(row=row, column=col)
+
+    # Запуск главного цикла окна
+    window.mainloop()
